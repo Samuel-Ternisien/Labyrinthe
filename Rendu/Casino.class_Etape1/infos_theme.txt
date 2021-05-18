@@ -1,0 +1,3 @@
+Thème League of Legends
+Samuel Ternisien, Baptiste Bobe, Antoine Bouque, Antoine Louchart
+{"Poro's Cookie","Sly Sack of Gold","Health Potion","Boots of speed","Doran's ring","Doran's shield","Doran's sword","Magic book","Simple armor","Longsword","Liandry's visage","Giant's belt","Sheen","Rabbadon Deathcap","Abbysal Mask","Triforce","Boots of Swiftness","Berserker's Boots"}

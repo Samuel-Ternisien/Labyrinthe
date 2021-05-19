@@ -1,9 +1,9 @@
 package Joueurs;
 
-import composants.Objet;
-import composants.Plateau;
-import composants.Utils;
-import partie.ElementsPartie;
+import Composants.Objet;
+import Composants.Plateau;
+import Composants.Utils;
+import Partie.ElementsPartie;
 
 /**
  * 

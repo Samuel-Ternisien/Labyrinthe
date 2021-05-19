@@ -1,7 +1,7 @@
 package Joueurs;
 
-import composants.Objet;
-import partie.ElementsPartie;
+import Composants.Objet;
+import Partie.ElementsPartie;
 
 /**
  * 

@@ -1,7 +1,7 @@
 package Joueurs;
 
 import grafix.interfaceGraphique.IG;
-import partie.ElementsPartie;
+import Partie.ElementsPartie;
 
 
 /**

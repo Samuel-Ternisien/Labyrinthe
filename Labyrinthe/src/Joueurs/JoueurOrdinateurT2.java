@@ -1,10 +1,10 @@
 package Joueurs;
 
-import composants.Objet;
-import composants.Piece;
-import composants.Plateau;
-import composants.Utils;
-import partie.ElementsPartie;
+import Composants.Objet;
+import Composants.Piece;
+import Composants.Plateau;
+import Composants.Utils;
+import Partie.ElementsPartie;
 
 /**
  * 

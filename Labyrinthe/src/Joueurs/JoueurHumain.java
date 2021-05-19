@@ -1,8 +1,8 @@
 package Joueurs;
 
-import composants.Objet;
+import Composants.Objet;
 import grafix.interfaceGraphique.IG;
-import partie.ElementsPartie;
+import Partie.ElementsPartie;
 
 /**
  * 

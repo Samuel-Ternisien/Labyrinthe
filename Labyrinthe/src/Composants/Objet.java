@@ -37,23 +37,6 @@ public class Objet {
 	 * @return Un tableau de 18 objets initialisés pour une partie du jeu. Chaque objet a une position générée aléatoirement. Les positions sont différentes pour deux objets distincts.
 	 *
 	 */
-	/**
-	 if (obj.surPlateau()==false) {
-	 for (Objet objt : tablObjet) {
-	 if (objt != null) {
-	 if (obj.getPosLignePlateau() == randomc && obj.getPosColonnePlateau() == randoml) {
-	 i--;
-	 }else {
-	 tablObjet[i]= new Objet(i);
-	 tablObjet[i].positionneObjet(randoml, randomc);
-	 }
-	 }
-	 }
-	 } else {
-	 tablObjet[i] = new Objet(i);
-	 tablObjet[i].positionneObjet(randoml, randomc);
-	 }
-	 **/
 	public static Objet[] nouveauxObjets() {
 		Objet[] tablObjet = new Objet[18];
 		boolean placementok=false;
@@ -175,7 +158,7 @@ public class Objet {
 	 * Methode toString ajouté par Ternisien Samuel le 18/05
 	 * @return tout les attributs de l'objet
 	 */
-	@Override
+
 	public String toString() {
 		return "Objet{" +
 				"numObjet=" + numObjet +

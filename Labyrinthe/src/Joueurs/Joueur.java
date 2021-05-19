@@ -20,7 +20,7 @@ public abstract class Joueur {
 	private int posColonne; // La colonne correspondant à la position du joueur sur le plateau
 
 	/**
-	 * A Faire (Quand Qui Statut)
+	 * A Faire (Quand B.B Statut)
 	 * 
 	 * Constructeur permettant de créer un joueur à partir de son nom, son type et 
 	 * le numéro de l'image le représentant. La position du joueur sur le plateau doit être
@@ -78,7 +78,7 @@ public abstract class Joueur {
 
 	/**
 	 * 
-	 * A Faire (Quand Qui Statut)
+	 * A Faire (Quand B.B Statut)
 	 *  
 	 * Méthode retournant le nombre d'objets récupérés par le joueur.
 	 * 
@@ -90,7 +90,7 @@ public abstract class Joueur {
 
 
 	/**
-	 * A Faire (Quand Qui Statut)
+	 * A Faire (Quand B.B Statut)
 	 *  
 	 * Méthode retournant la ligne du plateau sur laquelle se trouve le joueur.
 	 * @return  La ligne du plateau sur laquelle se trouve le joueur.
@@ -101,7 +101,7 @@ public abstract class Joueur {
 
 
 	/**
-	 * A Faire (Quand Qui Statut)
+	 * A Faire (Quand B.B Statut)
 	 * 
 	 * Méthode retournant la colonne du plateau sur laquelle se trouve le joueur.
 	 * @return La colonne du plateau sur laquelle se trouve le joueur.
@@ -112,7 +112,7 @@ public abstract class Joueur {
 
 
 	/**
-	 * A Faire (Quand Qui Statut)
+	 * A Faire (Quand B.B Statut)
 	 * 
 	 * Méthode retournant le nom du joueur.
 	 * @return Le nom du joueur.
@@ -122,7 +122,7 @@ public abstract class Joueur {
 	}
 
 	/**
-	 * A Faire (Quand Qui Statut)
+	 * A Faire (Quand B.B Statut)
 	 * 
 	 * Méthode retournant le numéro de l'image représentant le joueur.
 	 * @return Le numéro de l'image représentant le joueur.
@@ -196,7 +196,7 @@ public abstract class Joueur {
 	
 	/**
 	 * 
-	 * A Faire (Quand Qui Statut)
+	 * A Faire (Quand T.S Statut)
 	 * 
 	 * Méthode permettant le changement de position du joueur.
 	 * @param posLigne La ligne de la nouvelle position.

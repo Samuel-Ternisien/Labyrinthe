@@ -109,7 +109,7 @@ public class Plateau {
 
 	/**
 	 * 
-	 * A Faire (Quand Qui Statut)
+	 * ( 20/05 T.S fini )
 	 * 
 	 * Méthode permettant de tester si les positions passées en paramètre sont les positions de deux cases différentes et adjacentes 
 	 * de la grille de jeu et qu'il est possible de passer d'une cas à l'autre compte tenu des deux pièces posées sur les deux cases du plateau.
@@ -120,11 +120,34 @@ public class Plateau {
 	 * @param posColCase2 Un entier quelconque.
 	 * @return true si les positions passées en paramètre sont les positions de deux cases différentes et adjacentes de la grille de jeu et qu'il est possible de passer d'une cas à l'autre compte tenu des deux pièces posées sur les deux cases du plateau, false sinon.
 	 */
-	private boolean passageEntreCases(int posLigCase1,int posColCase1,int posLigCase2,int posColCase2){
-		
-		// A Compléter
-		
-		return false; // A Modifier
+	public boolean passageEntreCases(int posLigCase1,int posColCase1,int posLigCase2,int posColCase2){
+		Piece piece1 = plateau[posLigCase1][posColCase1];
+		Piece piece2 = plateau[posLigCase2][posColCase2];
+		String position="";
+		int testLig = posLigCase1-posLigCase2;
+		int testCol = posColCase1-posColCase2;
+		if(testLig==0){
+			if (testCol==-1){
+				position="PieceDroite";
+			}else if(testCol==1){
+				position="PieceGauche";
+			}
+		}else if(testCol==0){
+			if(testLig==-1){
+				position="PieceBas";
+			}else if(testLig==1){
+				position="PieceHaute";
+			}
+		}
+		if (position=="PieceBas"){
+			return piece2.getPointEntree(0) && piece1.getPointEntree(2);
+		}else if(position=="PieceHaute"){
+			return piece2.getPointEntree(2) && piece1.getPointEntree(0);
+		}else if(position=="PieceDroite"){
+			return piece2.getPointEntree(3) && piece1.getPointEntree(1);
+		}else if(position=="PieceGauche"){
+			return piece2.getPointEntree(1) && piece1.getPointEntree(3);
+		}else{return false;}
 	}
 
 	/**

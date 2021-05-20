@@ -136,7 +136,7 @@ public class ElementsPartie {
 	 * Méthode retournant une copie.
 	 * 
 	 * @return Une copie des éléments.
-	 */
+
 	public ElementsPartie copy(){
 		Objet[] nouveauxObjets=new Objet[(this.objets).length];
 		for (int i=0;i<objets.length;i++)
@@ -149,6 +149,7 @@ public class ElementsPartie {
 		ElementsPartie nouveauxElements=new  ElementsPartie(nouveauxJoueurs,nouveauxObjets,nouveauPlateau,nouvellePieceLibre); 
 		return nouveauxElements;
 	}
+	 */
 
 
 }

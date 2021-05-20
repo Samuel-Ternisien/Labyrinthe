@@ -66,57 +66,57 @@ public class ElementsPartie {
 	}
 
 	/**
-	 * A Faire (Quand Qui Statut)
+	 * (20/05/21 B.B Effectué)
 	 * 
 	 * Méthode permettant de récupérer les joueurs de la partie.
 	 * @return Les joueurs de la partie.
 	 */
 	public Joueur[] getJoueurs() {
-		return null; // A Modifier
+		return this.joueurs;
 	}
 
 
 	/**
-	 * A Faire (Quand Qui Statut)
+	 * (20/05/21 B.B Effectué)
 	 * 
 	 * Méthode permettant de récupérer les pièces de la partie.
 	 * @return Les objets de la partie.
 	 */
 	public Objet[] getObjets() {
-		return null; // A Modifier
+		return this.objets;
 	}
 
 
 	/**
-	 * A Faire (Quand Qui Statut)
+	 * (20/05/21 B.B Effectué)
 	 * 
 	 * Méthode permettant de récupérer le plateau de pièces de la partie.
 	 * @return Le plateau de pièces.
 	 */
 	public Plateau getPlateau() {
-		return null; // A Modifier
+		return this.plateau;
 	}
 
 
 	/**
-	 * A Faire (Quand Qui Statut)
+	 * (20/05/21 B.B Effectué)
 	 * 
 	 * Méthode permettant de récupérer la pièce libre de la partie.
 	 * @return La pièce libre.
 	 */
 	public Piece getPieceLibre() {
-		return null; // A Modifier
+		return this.pieceLibre;
 	}
 
 
 	/**
-	 * A Faire (Quand Qui Statut)
+	 * (20/05/21 B.B Effectué)
 	 * 
 	 * Méthode permettant de récupérer le nombre de joueurs de la partie.
 	 * @return Le nombre de joueurs.
 	 */
 	public int getNombreJoueurs() {
-		return -1; // A Modifier
+		return this.nombreJoueurs;
 	}
 
 

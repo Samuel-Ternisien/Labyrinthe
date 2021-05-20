@@ -126,6 +126,7 @@ public class Plateau {
 		String position="";
 		int testLig = posLigCase1-posLigCase2;
 		int testCol = posColCase1-posColCase2;
+		if(casesAdjacentes(posLigCase1,posColCase1,posLigCase2,posColCase2)) return false;
 		if(testLig==0){
 			if (testCol==-1){
 				position="PieceDroite";
@@ -152,7 +153,7 @@ public class Plateau {
 
 	/**
 	 * 
-	 * A Faire (Quand Qui Statut)
+	 * A Faire (asap T.S en cours) CHARIBS ALED
 	 * 
 	 * Méthode permettant de retourner un éventuel chemin entre deux cases du plateau compte tenu des pièces posées sur le plateau.
 	 * Dans le cas où il n'y a pas de chemin entre les deux cases, la valeur null est retournée.

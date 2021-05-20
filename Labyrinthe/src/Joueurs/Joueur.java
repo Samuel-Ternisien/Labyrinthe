@@ -36,8 +36,10 @@ public abstract class Joueur {
 		this.numJoueur=numJoueur;
 		this.nomJoueur=nomJoueur;
 		this.numeroImagePersonnage=numeroImagePersonnage;
-		this.posLignePlateau=posLignePlateau;
-		this.posColonnePlateau=posColonnePlateau;
+		this.nombreObjetsRecuperes=0;
+		this.objetsJoueur=null;
+		this.posLigne=posLignePlateau;
+		this.posColonne=posColonnePlateau;
 	}
 
 	/**
@@ -169,19 +171,15 @@ public abstract class Joueur {
 	 * 
 	 * @return Le prochain objet à récupérer par le joueur.
 	 */
-	public Objet getProchainObjet(){
-		return this.prochainObjet;
-	}
+	public Objet getProchainObjet(){return this.objetsJoueur[nombreObjetsRecuperes];}
 	
 	/**
 	 * 
-	 * A Faire (Quand Qui Statut)
+	 * (20/05 T.S Fini)
 	 * 
 	 * Méthode permettant de récupérer un nouvel objet. Cette méthode incrémente simplement de 1 le nombre d'objets qui ont été récupérés.
 	 */
-	public void recupererObjet(){
-		// A Compléter
-	}
+	public void recupererObjet(){this.nombreObjetsRecuperes++;}
 	
 
 	/**
@@ -191,19 +189,19 @@ public abstract class Joueur {
 	 * 
 	 * @return Le numéro du joueur.
 	 */
-	public int getNumJoueur(){
-		return this.numJoueur;
-	}
+	public int getNumJoueur(){return this.numJoueur;}
 	
 	/**
 	 * 
-	 * A Faire (Quand T.S Statut)
+	 * (20/05 T.S Fini)
 	 * 
 	 * Méthode permettant le changement de position du joueur.
 	 * @param posLigne La ligne de la nouvelle position.
 	 * @param posColonne La colonne de la nouvelle position.
 	 */
 	public void setPosition(int posLigne,int posColonne) {
+		this.posLigne=posLigne;
+		this.posColonne=posColonne;
 		// A Compléter
 	}
 	

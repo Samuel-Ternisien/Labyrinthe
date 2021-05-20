@@ -2,6 +2,9 @@ package Composants;
 
 import Composants.PieceM0;
 import Composants.Plateau;
+import java.util.ArrayList;
+
+import java.lang.reflect.Array;
 
 /**
  * Cette classe permet de gérer un plateau de jeu constitué d'une grille de pièces (grille de 7 lignes sur 7 colonnes).
@@ -153,7 +156,7 @@ public class Plateau {
 
 	/**
 	 * 
-	 * A Faire (asap T.S en cours) CHARIBS ALED
+	 * A Faire (asap T.S en cours)
 	 * 
 	 * Méthode permettant de retourner un éventuel chemin entre deux cases du plateau compte tenu des pièces posées sur le plateau.
 	 * Dans le cas où il n'y a pas de chemin entre les deux cases, la valeur null est retournée.
@@ -170,8 +173,16 @@ public class Plateau {
 	 * @return null si il n'existe pas de chemin entre les deux case, un chemin sinon.
 	 */
 	public int[][] calculeChemin(int posLigCaseDep,int posColCaseDep,int posLigCaseArr,int posColCaseArr){
-		int resultat[][]=null;
-		
+		int[] goal= {posLigCaseArr,posColCaseArr};
+		int[][] resultat=new int[][];
+		boolean chemin=true;
+		while chemin{
+			for (int i = 0; i < 4; i++) {
+
+
+			}
+		}
+
 		// A Compléter
 		
 		return resultat;

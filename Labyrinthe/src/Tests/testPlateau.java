@@ -32,8 +32,8 @@ public class testPlateau {
 
         Plateau plateau = new Plateau();
         Piece piecehorsplateau = plateau.placerPiecesAleatoirment();
-        for (int i = 0;i < 6 ;i ++){
-            for (int j = 0; j< 6;j ++){
+        for (int i = 0;i < 7 ;i ++){
+            for (int j = 0; j< 7;j ++){
                 IG.changerPiecePlateau(i, j, plateau.getPiece(i,j).getModelePiece(), plateau.getPiece(i,j).getOrientationPiece());
             }
         }
@@ -41,10 +41,10 @@ public class testPlateau {
 
         IG.changerPieceHorsPlateau(piecehorsplateau.getModelePiece(),piecehorsplateau.getOrientationPiece());
 
-        System.out.println("Haut: "+plateau.passageEntreCases(5,5,4,5));
-        System.out.println("Droite: "+plateau.passageEntreCases(5,5,5,6));
-        System.out.println("Bas: "+plateau.passageEntreCases(5,5,6,5));
-        System.out.println("Gauche: "+plateau.passageEntreCases(5,5,5,4));
+        System.out.println("Haut: "+plateau.haut(5,5));
+        //System.out.println("Droite: "+plateau.droite(5,5));
+        //System.out.println("Bas: "+plateau.bas(5,5));
+        //System.out.println("Gauche: "+plateau.gauche(5,5));
         IG.attendreClic();
         IG.miseAJourAffichage();
         String message2[] = {
@@ -52,6 +52,7 @@ public class testPlateau {
                 "Cliquez pour fermer !"
         };
         IG.afficherMessage(message2);
+        IG.miseAJourAffichage();
         IG.attendreClic();
         IG.fermerFenetreJeu();
     }

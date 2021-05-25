@@ -153,6 +153,65 @@ public class Plateau {
 			return piece2.getPointEntree(1) && piece1.getPointEntree(3);
 		}else{return false;}
 	}
+	/**
+	 * Méthode supplémentaire fait par T.S le 21/05.
+	 * Permet de retourner la piece de gauche/droite/haut/bas pour une piece donné
+	 * Si aucune piece adjacente , renvoie null.
+	 * @param posLig,posCol Position de la pièce à être testé.
+	 * @return Si un passage est possible , renvoie la position de la piece , sinon null.
+	 */
+	public int[] haut(int posLig,int posCol){
+		int posLig2=posLig--;
+		if( posLig2==-1){return null;}
+		if(passageEntreCases(posLig,posCol,posLig2,posCol)){
+			System.out.println(plateau[posLig2][posCol].getPointEntree(2));
+			int[] result = {posLig2, posCol};
+			return result;
+		}
+		System.out.println(plateau[posLig][posCol].getModelePiece());
+		System.out.println(plateau[posLig][posCol].getOrientationPiece());
+		System.out.println("Haut:"+plateau[posLig][posCol].getPointEntree(0));
+		System.out.println("Droite:"+plateau[posLig][posCol].getPointEntree(1));
+		System.out.println("Bas:"+plateau[posLig][posCol].getPointEntree(2));
+		System.out.println("Gauche:"+plateau[posLig][posCol].getPointEntree(3));
+		//System.out.println(plateau[posLig2][posCol].getModelePiece());
+		//System.out.println("Bas:"+plateau[posLig2][posCol].getPointEntree(2));
+		System.out.println(passageEntreCases(posLig,posCol,posLig2,posCol));
+		return null;
+	}
+	public int[] bas(int posLig,int posCol){
+		int posLig2=posLig++;
+		if (posLig2==7){return null;}
+		if(plateau[posLig][posCol].getPointEntree(2)&&plateau[posLig2][posCol].getPointEntree(0)){
+			System.out.println(plateau[posLig2][posCol].getPointEntree(0));
+			int[] result = {posLig2, posCol};
+			return result;
+		}
+		System.out.println(plateau[posLig2][posCol].getPointEntree(0));
+		return null;
+	}
+	public int[] droite(int posLig,int posCol){
+		int posCol2=posCol--;
+		if (posLig==-1){return null;}
+		if(plateau[posLig][posCol].getPointEntree(3)&&plateau[posLig][posCol2].getPointEntree(1)){
+			System.out.println(plateau[posLig][posCol2].getPointEntree(1));
+			int[] result = {posLig, posCol2};
+			return result;
+		}
+		System.out.println(plateau[posLig][posCol2].getPointEntree(3));
+		return null;
+	}
+	public int[] gauche(int posLig,int posCol){
+		int posCol2=posCol++;
+		if (posCol==7){return null;}
+		if(plateau[posLig][posCol].getPointEntree(1)&&plateau[posLig][posCol2].getPointEntree(3)){
+			System.out.println(plateau[posLig][posCol2].getPointEntree(1));
+			int[] result = {posLig, posCol2};
+			return result;
+		}
+		System.out.println(plateau[posLig][posCol2].getPointEntree(3));
+		return null;
+	}
 
 	/**
 	 * 
@@ -171,7 +230,8 @@ public class Plateau {
 	 * @param posLigCaseArr La ligne de la case d'arrivée (un entier compris entre 0 et 6).
 	 * @param posColCaseArr La colonne de la case d'arrivée (un entier compris entre 0 et 6).
 	 * @return null si il n'existe pas de chemin entre les deux case, un chemin sinon.
-	 */
+	 *
+
 	public int[][] calculeChemin(int posLigCaseDep,int posColCaseDep,int posLigCaseArr,int posColCaseArr){
 		int[] goal= {posLigCaseArr,posColCaseArr};
 		int[][] resultat=new int[][];
@@ -186,7 +246,7 @@ public class Plateau {
 		// A Compléter
 		
 		return resultat;
-	}
+	}*/
 
 
 

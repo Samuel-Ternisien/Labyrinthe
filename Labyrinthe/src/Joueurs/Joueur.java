@@ -138,7 +138,7 @@ public abstract class Joueur {
 	}
 
 	/**
-	 * A Faire (Quand Qui Statut)
+	 * (22/05 T.S Fini)
 	 * 
 	 * Méthode permettant d'affecter au joueur les objets qu'il devra récupérer durant le jeu.
 	 * Attention : cette méthode devra créer un nouveau tableau pour l'attribut this.objetsARecuperer.
@@ -146,6 +146,12 @@ public abstract class Joueur {
 	 * @param objetsARecuperer Un tableau contenant les objets à récupérer dans l'ordre.
 	 */
 	public void setObjetsJoueur(Objet objetsARecuperer[]){
+		int i=0;
+		this.objetsJoueur=new Objet[objetsARecuperer.length-1];
+		for(Objet objet:objetsARecuperer){
+			objetsJoueur[i]=objet;
+			i++;
+		}
 		// A Compléter
 	}
 	
@@ -158,7 +164,6 @@ public abstract class Joueur {
 	 * @return Un tableau d'Objet correspondant aux objets à récupérer du joueur.
 	 */
 	public Objet[] getObjetsJoueur(){
-		Objet resultat[]=null;
 		return this.objetsJoueur;
 	}
 	

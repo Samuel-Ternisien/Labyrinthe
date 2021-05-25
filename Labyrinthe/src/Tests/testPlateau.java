@@ -37,14 +37,11 @@ public class testPlateau {
                 IG.changerPiecePlateau(i, j, plateau.getPiece(i,j).getModelePiece(), plateau.getPiece(i,j).getOrientationPiece());
             }
         }
-
+        System.out.println(plateau.getPiece(5,5));
 
         IG.changerPieceHorsPlateau(piecehorsplateau.getModelePiece(),piecehorsplateau.getOrientationPiece());
 
-        System.out.println("Haut: "+plateau.haut(5,5));
-        //System.out.println("Droite: "+plateau.droite(5,5));
-        //System.out.println("Bas: "+plateau.bas(5,5));
-        //System.out.println("Gauche: "+plateau.gauche(5,5));
+        System.out.println(plateau.calculeChemin(5,5,6,6));
         IG.attendreClic();
         IG.miseAJourAffichage();
         String message2[] = {

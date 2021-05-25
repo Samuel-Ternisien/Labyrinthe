@@ -1,10 +1,8 @@
 package Composants;
 
-import Composants.PieceM0;
-import Composants.Plateau;
 import java.util.ArrayList;
-
-import java.lang.reflect.Array;
+import java.util.PriorityQueue;
+import java.util.Queue;
 
 /**
  * Cette classe permet de gérer un plateau de jeu constitué d'une grille de pièces (grille de 7 lignes sur 7 colonnes).
@@ -161,55 +159,55 @@ public class Plateau {
 	 * @return Si un passage est possible , renvoie la position de la piece , sinon null.
 	 */
 	public int[] haut(int posLig,int posCol){
-		int posLig2=posLig--;
+		int posLig2=posLig-1;
+		int[] result;
+		result = new int[2];
 		if( posLig2==-1){return null;}
-		if(passageEntreCases(posLig,posCol,posLig2,posCol)){
-			System.out.println(plateau[posLig2][posCol].getPointEntree(2));
-			int[] result = {posLig2, posCol};
+		Piece piece1 = plateau[posLig][posCol];
+		Piece piece2 = plateau[posLig2][posCol];
+		if(piece2.getPointEntree(2) && piece1.getPointEntree(0)){
+			result= new int[]{posLig2, posCol};
 			return result;
 		}
-		System.out.println(plateau[posLig][posCol].getModelePiece());
-		System.out.println(plateau[posLig][posCol].getOrientationPiece());
-		System.out.println("Haut:"+plateau[posLig][posCol].getPointEntree(0));
-		System.out.println("Droite:"+plateau[posLig][posCol].getPointEntree(1));
-		System.out.println("Bas:"+plateau[posLig][posCol].getPointEntree(2));
-		System.out.println("Gauche:"+plateau[posLig][posCol].getPointEntree(3));
-		//System.out.println(plateau[posLig2][posCol].getModelePiece());
-		//System.out.println("Bas:"+plateau[posLig2][posCol].getPointEntree(2));
-		System.out.println(passageEntreCases(posLig,posCol,posLig2,posCol));
 		return null;
 	}
 	public int[] bas(int posLig,int posCol){
-		int posLig2=posLig++;
-		if (posLig2==7){return null;}
-		if(plateau[posLig][posCol].getPointEntree(2)&&plateau[posLig2][posCol].getPointEntree(0)){
-			System.out.println(plateau[posLig2][posCol].getPointEntree(0));
-			int[] result = {posLig2, posCol};
+		int posLig2=posLig+1;
+		int[] result;
+		result = new int[2];
+		if( posLig2==7){return null;}
+		Piece piece1 = plateau[posLig][posCol];
+		Piece piece2 = plateau[posLig2][posCol];
+		if(piece2.getPointEntree(0) && piece1.getPointEntree(2)){
+			result= new int[]{posLig2, posCol};
 			return result;
 		}
-		System.out.println(plateau[posLig2][posCol].getPointEntree(0));
 		return null;
 	}
 	public int[] droite(int posLig,int posCol){
-		int posCol2=posCol--;
-		if (posLig==-1){return null;}
-		if(plateau[posLig][posCol].getPointEntree(3)&&plateau[posLig][posCol2].getPointEntree(1)){
-			System.out.println(plateau[posLig][posCol2].getPointEntree(1));
-			int[] result = {posLig, posCol2};
+		int posCol2=posCol+1;
+		int[] result;
+		result = new int[2];
+		if( posCol2==7){return null;}
+		Piece piece1 = plateau[posLig][posCol];
+		Piece piece2 = plateau[posLig][posCol2];
+		if(piece2.getPointEntree(3) && piece1.getPointEntree(1)){
+			result= new int[]{posLig, posCol2};
 			return result;
 		}
-		System.out.println(plateau[posLig][posCol2].getPointEntree(3));
 		return null;
 	}
 	public int[] gauche(int posLig,int posCol){
-		int posCol2=posCol++;
-		if (posCol==7){return null;}
-		if(plateau[posLig][posCol].getPointEntree(1)&&plateau[posLig][posCol2].getPointEntree(3)){
-			System.out.println(plateau[posLig][posCol2].getPointEntree(1));
-			int[] result = {posLig, posCol2};
+		int posCol2=posCol-1;
+		int[] result;
+		result = new int[2];
+		if( posCol2==-1){return null;}
+		Piece piece1 = plateau[posLig][posCol];
+		Piece piece2 = plateau[posLig][posCol2];
+		if(piece2.getPointEntree(1) && piece1.getPointEntree(3)){
+			result= new int[]{posLig, posCol2};
 			return result;
 		}
-		System.out.println(plateau[posLig][posCol2].getPointEntree(3));
 		return null;
 	}
 
@@ -231,22 +229,43 @@ public class Plateau {
 	 * @param posColCaseArr La colonne de la case d'arrivée (un entier compris entre 0 et 6).
 	 * @return null si il n'existe pas de chemin entre les deux case, un chemin sinon.
 	 *
+	 */
+	public int[] calculeChemin(int posLigCaseDep, int posColCaseDep, int posLigCaseArr, int posColCaseArr){
+		Queue<int[]> queue= new PriorityQueue<int[]>();
+		ArrayList decouvert=new ArrayList();
+		queue.add(new int[]{posLigCaseDep, posColCaseDep});
+		while(!(queue.isEmpty())){
+			int[] voisin=queue.remove();
+			if (voisin[0]==posLigCaseArr && voisin[1]==posColCaseArr){
+				return voisin;
+			}
+			int[] haut=haut(voisin[0],voisin[1]);
+			int[] bas=bas(voisin[0],voisin[1]);
+			int[] gauche=gauche(voisin[0],voisin[1]);
+			int[] droite=droite(voisin[0],voisin[1]);
 
-	public int[][] calculeChemin(int posLigCaseDep,int posColCaseDep,int posLigCaseArr,int posColCaseArr){
-		int[] goal= {posLigCaseArr,posColCaseArr};
-		int[][] resultat=new int[][];
-		boolean chemin=true;
-		while chemin{
-			for (int i = 0; i < 4; i++) {
-
-
+			if(haut!=null && !(decouvert.contains(haut))) {
+				decouvert.add(haut);
+				queue.add(haut);
+			}
+			if(bas!=null && !(decouvert.contains(bas))){
+				decouvert.add(bas);
+				queue.add(bas);
+			}
+			if (gauche!=null && !(decouvert.contains(gauche))){
+				decouvert.add(gauche);
+				queue.add(gauche);
+			}
+			if(droite!=null &&!(decouvert.contains(droite))){
+				decouvert.add(droite);
+				queue.add(gauche);
 			}
 		}
 
 		// A Compléter
 		
-		return resultat;
-	}*/
+		return null;
+	}
 
 
 

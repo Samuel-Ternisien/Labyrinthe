@@ -21,7 +21,7 @@ public class ElementsPartie {
 
 	/**
 	 * 
-	 * A Faire (Quand Qui Statut)
+	 * A Faire (31/05 T.S Fini)
 	 *  
 	 * Constructeur permettant de générer et d'initialiser l'ensemble des éléments d'une partie (sauf les joueurs qui sont donnés en paramètres).
 	 * 
@@ -34,7 +34,12 @@ public class ElementsPartie {
 	 */
 	public ElementsPartie(Joueur[] joueurs) {
 		
-		// A Compléter
+		this.joueurs=joueurs;
+		this.objets=Objet.nouveauxObjets();
+		this.plateau=new Plateau();
+		this.pieceLibre=plateau.placerPiecesAleatoirment();
+		this.nombreJoueurs=joueurs.length;
+	
 		
 	}
 

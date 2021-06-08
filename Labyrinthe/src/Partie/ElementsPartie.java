@@ -5,6 +5,8 @@ import Composants.Piece;
 import Composants.Plateau;
 import Composants.Utils;
 import Joueurs.Joueur;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 
@@ -21,11 +23,11 @@ public class ElementsPartie {
 
 	/**
 	 * 
-	 * A Faire (Quand Qui Statut)
+	 * (31/05 T.S Fini)
 	 *  
 	 * Constructeur permettant de générer et d'initialiser l'ensemble des éléments d'une partie (sauf les joueurs qui sont donnés en paramètres).
 	 * 
-	 * Un plateau est créé en placant 49 oièces de manière aléatoire (utilisation de la méthode placerPiecesAleatoierment de la classe Plateau).
+	 * Un plateau est créé en placant 49 pièces de manière aléatoire (utilisation de la méthode placerPiecesAleatoierment de la classe Plateau).
 	 * La pièce restante (celle non présente sur le plateau) est affectée à la pièce libre.
 	 * Les 18 objets sont créés avec des positions aléatoires sur le plateau (utilisation de la méthode Objet.nouveauxObjets)
 	 * et distribuées aux différents joueurs (utilisation de la méthode attribuerObjetsAuxJoueurs).
@@ -33,9 +35,11 @@ public class ElementsPartie {
 	 * @param joueurs Les joueurs de la partie. Les objets des joueurs ne sont pas encore attribués (c'est au constructeur de le faire).
 	 */
 	public ElementsPartie(Joueur[] joueurs) {
-		
-		// A Compléter
-		
+		this.joueurs=joueurs;
+		this.objets=Objet.nouveauxObjets();
+		this.plateau=new Plateau();
+		this.pieceLibre=plateau.placerPiecesAleatoirment();
+		this.nombreJoueurs=joueurs.length;
 	}
 
 	/**
@@ -55,13 +59,42 @@ public class ElementsPartie {
 	}
 
 	/**
-	 * A Faire (Quand Qui Statut)
+	 * (31/05 T.S a test)
 	 * 
 	 * Méthode permettant d'attribuer les objets aux différents joueurs de manière aléatoire.
 	 */
 	private void attribuerObjetsAuxJoueurs(){
-	
-		// A Compléter
+		if(this.nombreJoueurs==2){
+			int nbrObjet=9;
+			int cpt=0;
+			int[] obj=new int[nbrObjet];
+			for(int i=0;i<nombreJoueurs;i++){
+				int[] tbl=Utils.genereTabIntAleatoirement(nbrObjet);
+				Objet[] objTemp= new Objet[nbrObjet];
+				for (int j:tbl) {
+					objTemp[cpt]=new Objet(j);
+					cpt++;
+					if(cpt==nbrObjet){
+						cpt=0;
+					}
+				}
+			}
+		}else if(this.nombreJoueurs==3) {
+			int nbrObjet = 9;
+			int cpt = 0;
+			int[] obj = new int[nbrObjet];
+			for (int i = 0; i < nombreJoueurs; i++) {
+				int[] tbl = Utils.genereTabIntAleatoirement(nbrObjet);
+				Objet[] objTemp = new Objet[nbrObjet];
+				for (int j : tbl) {
+					objTemp[cpt] = new Objet(j);
+					cpt++;
+					if (cpt == nbrObjet) {
+						cpt = 0;
+					}
+				}
+			}
+		}
 		
 	}
 
@@ -119,7 +152,22 @@ public class ElementsPartie {
 		return this.nombreJoueurs;
 	}
 
-
+	/**
+	 * (06/06 T.S Ajouté)
+	 * Méthode supplémentaire déplacement la pièce 1 dans la position 2
+	 * @param posLig,posCol,posLig2,posCol2 ligne et colonnes des pieces a déplacer
+	 * @return la piece déplacer
+	 */
+	public Piece bougePiece(int posLig,int posCol,int posLig2,int posCol2){
+		Piece pieceTemp=plateau.getPiece(posLig2,posCol2);
+		plateau.positionnePiece(plateau.getPiece(posLig,posCol2),posLig2,posCol2);
+		return pieceTemp;
+	}
+	public Piece bougePiece(int posLig,int posCol,Piece piece){
+		Piece pieceTemp=plateau.getPiece(posLig,posCol);
+		plateau.positionnePiece(piece,posLig,posCol);
+		return pieceTemp;
+	}
 	/**
 	 * A Faire (Quand Qui Statut)
 	 * 
@@ -127,9 +175,77 @@ public class ElementsPartie {
 	 * 
 	 * @param choixEntree L'entrée choisie pour réaliser l'insertion (un nombre entre 0 et 27).
 	 */
-	public void insertionPieceLibre(int choixEntree){
+	/**public void insertionPieceLibre(int choixEntree){
+		List<Integer> haut=new ArrayList<Integer>(7);
+		List<Integer> droite=new ArrayList<Integer>(7);
+		List<Integer> bas=new ArrayList<Integer>(7);
+		List<Integer> gauche=new ArrayList<Integer>(7);
+		for (int i = 0; i < 7; i++) {
+			haut.add(i);
+		}
+		for (int i = 7; i < 14; i++) {
+			droite.add(i);
+		}
+		for (int i = 14; i < 21; i++) {
+			bas.add(i);
+		}
+		for (int i = 21; i < 28; i++) {
+			gauche.add(i);
+		}
+		System.out.println(haut);
+		System.out.println(droite);
+		System.out.println(gauche);
+		System.out.println(bas);
+
+		if (haut.contains(choixEntree)){
+			for (int i = 0; i < 7; i++) {
+				if (i==0){
+					Piece temp=bougePiece(choixEntree,i,choixEntree,i+1);
+					plateau.positionnePiece(pieceLibre,choixEntree,0);
+				}else if(i==5){
+						pieceLibre=bougePiece(choixEntree,i,choixEntree,i+1);
+				}else{
+					Piece temp=bougePiece(choixEntree,i,temp);
+				}
+			}
+		}else if (droite.contains(choixEntree)){
+			for (int i = 7; i > 7; i--) {
+				if (i==5){
+					Piece temp=bougePiece(i,choixEntree,i-1,choixEntree);
+					plateau.positionnePiece(pieceLibre,i,choixEntree);
+				}else if(i==5){
+					pieceLibre=bougePiece(i,choixEntree,i-1,choixEntree);
+				}else{
+					Piece temp=bougePiece(i,choixEntree,temp);
+				}
+			}
+		}else if (bas.contains(choixEntree)){
+			for (int i = 7; i > 7; i--) {
+				if (i==0){
+					Piece temp=bougePiece(choixEntree,i,choixEntree,i-1);
+					plateau.positionnePiece(pieceLibre,choixEntree,0);
+				}else if(i==5){
+					pieceLibre=bougePiece(choixEntree,i,choixEntree,i-1);
+				}else{
+					Piece temp=bougePiece(choixEntree,i,temp);
+				}
+			}
+
+		}else if (gauche.contains(choixEntree)){
+			for (int i = 0; i < 7; i++) {
+				if (i==5){
+					Piece temp=bougePiece(i,choixEntree,i+1,choixEntree);
+					plateau.positionnePiece(pieceLibre,i,choixEntree);
+				}else if(i==5){
+					pieceLibre=bougePiece(i,choixEntree,i+1,choixEntree);
+				}else{
+					Piece temp=bougePiece(i,choixEntree,temp);
+				}
+			}
+		}
 		// A Compléter
 	}
+**/
 
 
 	/**
@@ -150,6 +266,4 @@ public class ElementsPartie {
 		return nouveauxElements;
 	}
 	 */
-
-
 }

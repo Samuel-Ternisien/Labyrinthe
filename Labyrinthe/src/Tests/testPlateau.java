@@ -37,11 +37,27 @@ public class testPlateau {
                 IG.changerPiecePlateau(i, j, plateau.getPiece(i,j).getModelePiece(), plateau.getPiece(i,j).getOrientationPiece());
             }
         }
-        System.out.println(plateau.getPiece(5,5));
-
+        System.out.println("Liste des chemins trouvés depuis la pièce (3,3):");
+        int[][] maxchemin={{0,0}};
+        int countm=0;
+        for (int i=0;i<7;i++) {
+            int count = 0;
+            for (int j = 0; j < 7; j++) {
+                int[][] chemin = plateau.calculeChemin(3, 3, i, j);
+                if (chemin != null) {
+                    System.out.println("Chemin entre les cases (3,3) et (" + i + "," + j + ") : " + chemin);
+                    if (count > countm) {
+                        maxchemin = chemin;
+                        countm = count;
+                    }
+                }
+                count = 0;
+            }
+        }
+        System.out.println(plateau.calculeChemin(3,3,3,4));
         IG.changerPieceHorsPlateau(piecehorsplateau.getModelePiece(),piecehorsplateau.getOrientationPiece());
 
-        System.out.println(plateau.calculeChemin(5,5,6,6));
+
         IG.attendreClic();
         IG.miseAJourAffichage();
         String message2[] = {

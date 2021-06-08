@@ -27,7 +27,7 @@ public class JoueurOrdinateurT3 extends JoueurOrdinateur {
 
 	 */
 	public JoueurOrdinateurT3(int numJoueur,String nomJoueur, int numeroImagePersonnage,int posLignePlateau,int posColonnePlateau) {
-				super(numJoueur,nomJoueur, numeroImagePersonnage,posLignePlateau,posColonnePlateau);
+		super(numJoueur,nomJoueur, numeroImagePersonnage,posLignePlateau,posColonnePlateau);
 	}
 
 	@Override
@@ -35,7 +35,7 @@ public class JoueurOrdinateurT3 extends JoueurOrdinateur {
 		return "OrdiType3";
 	}
 
-	
+
 	@Override
 	public Joueur copy(Objet objets[]){
 		Joueur nouveauJoueur=new JoueurOrdinateurT3(getNumJoueur(),getNomJoueur(), getNumeroImagePersonnage(),getPosLigne(),getPosColonne());
@@ -45,4 +45,22 @@ public class JoueurOrdinateurT3 extends JoueurOrdinateur {
 		return nouveauJoueur;
 	}
 
+	private int[] RechercheObjet(){
+		Objet objet = this.getObjetsJoueur()[0];
+		int [] res = new int[2];
+		if(objet.surPlateau()) {
+			int x = objet.getPosColonnePlateau();
+			int y = objet.getPosLignePlateau();
+			res[0]=x;
+			res[1]=y;
+			return res;
+		}
+		return res;
+
+	}
+
+	public void VaChercher(int [] coordonnée) {
+		int [][] chemin = Plateau.calculeChemin(this.getPosLigne(), this.getPosColonne(), coordonnée[1], coordonnée[0]);
+		this.setPosition(chemin[0][0],chemin[0][1]);
+	}
 }

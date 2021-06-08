@@ -152,7 +152,6 @@ public abstract class Joueur {
 			objetsJoueur[i]=objet;
 			i++;
 		}
-		// A Compléter
 	}
 	
 	/**
@@ -207,7 +206,6 @@ public abstract class Joueur {
 	public void setPosition(int posLigne,int posColonne) {
 		this.posLigne=posLigne;
 		this.posColonne=posColonne;
-		// A Compléter
 	}
 	
 	/**

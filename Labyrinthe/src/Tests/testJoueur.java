@@ -59,6 +59,13 @@ public class testJoueur {
                 "",
                 "Cliquez pour continuer !"
         };
+        int i=0;
+        while(i<3){
+            int[] choix=joueurs[i].choisirCaseArrivee(null);
+            IG.placerJoueurPrecis(i,choix[0],choix[1],1,1);
+            i++;
+            IG.attendreClic();
+        }
 
         IG.afficherMessage(message);
         IG.miseAJourAffichage();

@@ -18,7 +18,7 @@ public class JoueurOrdinateurT2 extends JoueurOrdinateur {
 
 	/**
 	 * Constructeur permettant de créer un joueur.
-	 * 
+	 *
 	 * @param numJoueur Le numéro du joueur.
 	 * @param nomJoueur Le nom du joueur.
 	 * @param numeroImagePersonnage Le numéro de l'image représentant le joueur.
@@ -27,7 +27,7 @@ public class JoueurOrdinateurT2 extends JoueurOrdinateur {
 
 	 */
 	public JoueurOrdinateurT2(int numJoueur,String nomJoueur, int numeroImagePersonnage,int posLignePlateau,int posColonnePlateau) {
-				super(numJoueur,nomJoueur, numeroImagePersonnage,posLignePlateau,posColonnePlateau);
+		super(numJoueur,nomJoueur, numeroImagePersonnage,posLignePlateau,posColonnePlateau);
 	}
 
 	@Override
@@ -45,4 +45,25 @@ public class JoueurOrdinateurT2 extends JoueurOrdinateur {
 		return nouveauJoueur;
 	}
 
+	private int[] RechercheObjet(){
+		Objet objet = this.getObjetsJoueur()[0];
+		int [] res = new int[2];
+		if(objet.surPlateau()) {
+			int x = objet.getPosColonnePlateau();
+			int y = objet.getPosLignePlateau();
+			res[0]=x;
+			res[1]=y;
+			return res;
+		}
+		return res;
+
+	}
+
+	public void VaChercher(int [] coordonnée) {
+		int [][] chemin = Plateau.calculeChemin(this.getPosLigne(), this.getPosColonne(), coordonnée[1], coordonnée[0]);
+		for(int i = 0; i < chemin.length; i++){
+			this.setPosition(chemin[i][0],chemin[i][1]);
+		}
+
+	}
 }

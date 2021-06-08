@@ -1,8 +1,6 @@
 package Composants;
 
-import java.util.ArrayList;
-import java.util.PriorityQueue;
-import java.util.Queue;
+import java.util.Vector;
 
 /**
  * Cette classe permet de gérer un plateau de jeu constitué d'une grille de pièces (grille de 7 lignes sur 7 colonnes).
@@ -230,41 +228,97 @@ public class Plateau {
 	 * @return null si il n'existe pas de chemin entre les deux case, un chemin sinon.
 	 *
 	 */
-	public int[] calculeChemin(int posLigCaseDep, int posColCaseDep, int posLigCaseArr, int posColCaseArr){
-		Queue<int[]> queue= new PriorityQueue<int[]>();
-		ArrayList decouvert=new ArrayList();
-		queue.add(new int[]{posLigCaseDep, posColCaseDep});
-		while(!(queue.isEmpty())){
-			int[] voisin=queue.remove();
-			if (voisin[0]==posLigCaseArr && voisin[1]==posColCaseArr){
-				return voisin;
-			}
-			int[] haut=haut(voisin[0],voisin[1]);
-			int[] bas=bas(voisin[0],voisin[1]);
-			int[] gauche=gauche(voisin[0],voisin[1]);
-			int[] droite=droite(voisin[0],voisin[1]);
+	public int[][] calculeChemin(int posLigCaseDep,int posColCaseDep,int posLigCaseArr,int posColCaseArr){
+		int resultat[][]=null;
+		int ligActuelle = posLigCaseDep;
+		int colActuelle = posColCaseDep;
+		boolean pieceNonVisitee[][] = new boolean[7][7];
+		Vector<int[]> chemin = new Vector<int[]>();
 
-			if(haut!=null && !(decouvert.contains(haut))) {
-				decouvert.add(haut);
-				queue.add(haut);
-			}
-			if(bas!=null && !(decouvert.contains(bas))){
-				decouvert.add(bas);
-				queue.add(bas);
-			}
-			if (gauche!=null && !(decouvert.contains(gauche))){
-				decouvert.add(gauche);
-				queue.add(gauche);
-			}
-			if(droite!=null &&!(decouvert.contains(droite))){
-				decouvert.add(droite);
-				queue.add(gauche);
+		for(int i = 0; i < 7 ; i++) {
+			for(int n = 0; n < 7; n++) {
+				pieceNonVisitee[i][n] = true;
 			}
 		}
 
-		// A Compléter
-		
-		return null;
+
+		pieceNonVisitee[ligActuelle][colActuelle] = false;
+		chemin.add(new int[] {posLigCaseDep,posColCaseDep});
+
+		while(ligActuelle != posLigCaseArr || colActuelle !=  posColCaseArr) {
+			if(nbPassagePossible(ligActuelle,colActuelle,pieceNonVisitee) >= 1) {
+
+				if(passageEntreCases(ligActuelle, colActuelle, ligActuelle-1, colActuelle) && pieceNonVisitee[ligActuelle-1][colActuelle]) {
+					ligActuelle -= 1;
+				}
+				else if (passageEntreCases(ligActuelle, colActuelle, ligActuelle, colActuelle-1) && pieceNonVisitee[ligActuelle][colActuelle-1]) {
+					colActuelle -= 1;
+				}
+				else if (passageEntreCases(ligActuelle, colActuelle, ligActuelle+1, colActuelle) && pieceNonVisitee[ligActuelle+1][colActuelle]) {
+					ligActuelle +=1;
+				}
+				else if(passageEntreCases(ligActuelle, colActuelle, ligActuelle, colActuelle+1) && pieceNonVisitee[ligActuelle][colActuelle+1]) {
+					colActuelle += 1;
+
+				}
+				int[] couple = new int[2];
+				couple[0] = ligActuelle;
+				couple[1] = colActuelle;
+				pieceNonVisitee[ligActuelle][colActuelle] = false;
+				chemin.add(couple);
+			}
+			else {
+				chemin.remove(chemin.size()-1);
+				if (chemin.size() >= 1) {
+					int posL = chemin.get(chemin.size()-1)[0];
+					int posC = chemin.get(chemin.size()-1)[1];
+					if(ligActuelle-1 == posL) {
+						ligActuelle = posL;
+					}
+					else if(colActuelle+1 == posC) {
+						colActuelle = posC;
+					}
+					else if(ligActuelle+1 == posL) {
+						ligActuelle = posL;
+					}
+					else if(colActuelle-1 == posC) {
+						colActuelle = posC;
+					}
+				}
+				else {
+					return null;
+				}
+
+			}
+		}
+
+		resultat = new int[chemin.size()][2];
+		for(int i = 0; i < chemin.size(); i++) {
+			resultat[i][0] = chemin.get(i)[0];
+			resultat[i][1] = chemin.get(i)[1];
+		}
+		return resultat;
+	}
+
+	private int nbPassagePossible(int ligActuelle,int colActuelle, boolean[][] pieceNonVisitee) {
+		int nbEntrees = 0;
+		if(passageEntreCases(ligActuelle, colActuelle, ligActuelle-1, colActuelle) && pieceNonVisitee[ligActuelle-1][colActuelle])  {
+			nbEntrees = nbEntrees + 1;
+
+		}
+		if(passageEntreCases(ligActuelle, colActuelle, ligActuelle, colActuelle-1) && pieceNonVisitee[ligActuelle][colActuelle-1]) {
+			nbEntrees = nbEntrees + 1;
+
+		}
+		if(passageEntreCases(ligActuelle, colActuelle, ligActuelle+1, colActuelle) && pieceNonVisitee[ligActuelle+1][colActuelle]) {
+			nbEntrees = nbEntrees + 1;
+
+		}
+		if(passageEntreCases(ligActuelle, colActuelle, ligActuelle, colActuelle+1) && pieceNonVisitee[ligActuelle][colActuelle+1]) {
+			nbEntrees = nbEntrees + 1;
+
+		}
+		return nbEntrees;
 	}
 
 

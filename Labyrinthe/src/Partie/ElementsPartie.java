@@ -24,7 +24,8 @@ public class ElementsPartie {
 	/**
 	 * 
 	 * (31/05 T.S Fini)
-	 *  
+	 * A Faire (31/05 T.S Fini)
+	 *
 	 * Constructeur permettant de générer et d'initialiser l'ensemble des éléments d'une partie (sauf les joueurs qui sont donnés en paramètres).
 	 * 
 	 * Un plateau est créé en placant 49 pièces de manière aléatoire (utilisation de la méthode placerPiecesAleatoierment de la classe Plateau).
@@ -40,6 +41,14 @@ public class ElementsPartie {
 		this.plateau=new Plateau();
 		this.pieceLibre=plateau.placerPiecesAleatoirment();
 		this.nombreJoueurs=joueurs.length;
+
+		this.joueurs=joueurs;
+		this.objets=Objet.nouveauxObjets();
+		this.plateau=new Plateau();
+		this.pieceLibre=plateau.placerPiecesAleatoirment();
+		this.nombreJoueurs=joueurs.length;
+
+
 	}
 
 	/**

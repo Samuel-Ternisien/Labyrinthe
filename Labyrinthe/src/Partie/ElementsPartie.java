@@ -7,6 +7,7 @@ import Composants.Utils;
 import Joueurs.Joueur;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Vector;
 
 /**
  * 
@@ -41,14 +42,7 @@ public class ElementsPartie {
 		this.plateau=new Plateau();
 		this.pieceLibre=plateau.placerPiecesAleatoirment();
 		this.nombreJoueurs=joueurs.length;
-
-		this.joueurs=joueurs;
-		this.objets=Objet.nouveauxObjets();
-		this.plateau=new Plateau();
-		this.pieceLibre=plateau.placerPiecesAleatoirment();
-		this.nombreJoueurs=joueurs.length;
-
-
+		attribuerObjetsAuxJoueurs();
 	}
 
 	/**
@@ -72,39 +66,61 @@ public class ElementsPartie {
 	 * 
 	 * Méthode permettant d'attribuer les objets aux différents joueurs de manière aléatoire.
 	 */
-	private void attribuerObjetsAuxJoueurs(){
-		if(this.nombreJoueurs==2){
-			int nbrObjet=9;
-			int cpt=0;
-			int[] obj=new int[nbrObjet];
-			for(int i=0;i<nombreJoueurs;i++){
-				int[] tbl=Utils.genereTabIntAleatoirement(nbrObjet);
-				Objet[] objTemp= new Objet[nbrObjet];
-				for (int j:tbl) {
-					objTemp[cpt]=new Objet(j);
-					cpt++;
-					if(cpt==nbrObjet){
-						cpt=0;
-					}
-				}
-			}
-		}else if(this.nombreJoueurs==3) {
+	private void attribuerObjetsAuxJoueurs() {
+		if (this.nombreJoueurs == 2) {
 			int nbrObjet = 9;
-			int cpt = 0;
-			int[] obj = new int[nbrObjet];
-			for (int i = 0; i < nombreJoueurs; i++) {
-				int[] tbl = Utils.genereTabIntAleatoirement(nbrObjet);
-				Objet[] objTemp = new Objet[nbrObjet];
-				for (int j : tbl) {
-					objTemp[cpt] = new Objet(j);
-					cpt++;
-					if (cpt == nbrObjet) {
-						cpt = 0;
+			Vector<Integer> objAjout = new Vector<>(18);
+			Objet[] joueur1 = new Objet[nbrObjet+1];
+			int cpt1 = 0;
+			int cpt2 = 0;
+			Objet[] joueur2 = new Objet[nbrObjet+1];
+			while (objAjout.size() != 18) {
+				int random = Utils.genererEntier(18);
+				if (!(objAjout.contains(random))) {
+					if (objAjout.size() < nbrObjet) {
+						joueur1[cpt1] = new Objet(random);
+						objAjout.add(random);
+						cpt1++;
+					} else {
+						joueur2[cpt2] = new Objet(random);
+						objAjout.add(random);
+						cpt2++;
 					}
 				}
 			}
+			joueurs[0].setObjetsJoueur(joueur1);
+			joueurs[1].setObjetsJoueur(joueur2);
+		} else if (this.nombreJoueurs == 3) {
+			int nbrObjet = 6;
+			Vector<Integer> objAjout = new Vector<>(18);
+			Objet[] joueur1 = new Objet[nbrObjet];
+			int cpt1 = 0;
+			int cpt2 = 0;
+			Objet[] joueur2 = new Objet[nbrObjet];
+			Objet[] joueur3 = new Objet[nbrObjet];
+			int cpt3 = 0;
+			while (objAjout.size() != 18) {
+				int random = Utils.genererEntier(18);
+				if (!(objAjout.contains(random))) {
+					if (objAjout.size() < 6) {
+						joueur1[cpt1] = new Objet(random);
+						objAjout.add(random);
+						cpt1++;
+					} else if (objAjout.size() < 12) {
+						joueur2[cpt2] = new Objet(random);
+						cpt2++;
+						objAjout.add(random);
+					} else {
+						joueur3[cpt3] = new Objet(random);
+						cpt3++;
+						objAjout.add(random);
+					}
+				}
+			}
+			joueurs[0].setObjetsJoueur(joueur1);
+			joueurs[1].setObjetsJoueur(joueur2);
+			joueurs[2].setObjetsJoueur(joueur3);
 		}
-		
 	}
 
 	/**

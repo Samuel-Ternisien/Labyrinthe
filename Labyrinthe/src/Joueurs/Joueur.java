@@ -147,7 +147,7 @@ public abstract class Joueur {
 	 */
 	public void setObjetsJoueur(Objet objetsARecuperer[]){
 		int i=0;
-		this.objetsJoueur=new Objet[objetsARecuperer.length-1];
+		this.objetsJoueur=new Objet[objetsARecuperer.length];
 		for(Objet objet:objetsARecuperer){
 			objetsJoueur[i]=objet;
 			i++;

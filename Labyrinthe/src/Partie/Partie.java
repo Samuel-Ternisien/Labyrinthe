@@ -5,13 +5,12 @@ import Composants.Piece;
 import Composants.Plateau;
 import grafix.interfaceGraphique.IG;
 import Joueurs.Joueur;
-import Joueurs.JoueurOrdinateur;
 
 public class Partie {
 	static double version=0.0;
 
 
-	//private ElementsPartie elementsPartie; // Les éléments de la partie.
+	private ElementsPartie elementsPartie; // Les éléments de la partie.
 
 	/**
 	 * 
@@ -24,9 +23,43 @@ public class Partie {
 		parametrerEtInitialiser();
 
 		// On affiche l'ensemble des éléments
-		
-		// A Compléter
-
+		for(int i = 0; i<=6; i++){
+			for(int j = 0; j<=6; j++) {
+				IG.changerPiecePlateau(i,j,elementsPartie.getPlateau().getPiece(i,j).getModelePiece(),elementsPartie.getPlateau().getPiece(i,j).getOrientationPiece());
+			}
+		}
+		//Joueurs
+		int c=0;
+		for (Joueur joueur:elementsPartie.getJoueurs()) {
+			if (c==0){
+				joueur.setPosition(0,0);
+				c++;
+				IG.placerJoueurPrecis(0,0,0,1,1);
+			}
+			else if (c==1){
+				joueur.setPosition(0,6);
+				c++;
+				IG.placerJoueurPrecis(1,0,6,1,1);
+			}
+			else if(c==2){
+				joueur.setPosition(6,6);
+				c++;
+				IG.placerJoueurPrecis(2,6,6,1,1);
+			}
+		}
+		//Objet
+		for (Objet obj:elementsPartie.getObjets()) {
+			IG.placerObjetPlateau(obj.getNumeroObjet(),obj.getPosLignePlateau(),obj.getPosColonnePlateau());
+		}
+		int cpt=0;
+		for (Joueur joueur:elementsPartie.getJoueurs()) {
+			int cptObj=0;
+			for (Objet obj:joueur.getObjetsJoueur()) {
+				IG.changerObjetJoueur(cpt,obj.getNumeroObjet(),cptObj);
+				cptObj++;
+			}
+			cpt++;
+		}
 		IG.rendreVisibleFenetreJeu();
 	}
 
@@ -42,7 +75,7 @@ public class Partie {
 		// Création des joueurs
 		Joueur joueurs[]=Joueur.nouveauxJoueurs(parametresJeu);
 		// Création des éléments de la partie
-		ElementsPartie elementsPartie=new ElementsPartie(joueurs);
+		this.elementsPartie=new ElementsPartie(joueurs);
 	}
 
 
@@ -53,6 +86,7 @@ public class Partie {
 	 * Méthode permettant de lancer une partie.
 	 */
 	public void lancer(){
+
 		// A Compléter
 	}
 
@@ -63,10 +97,9 @@ public class Partie {
 	 * @param args Les arguments du programmes.
 	 */
 	public static void main(String[] args) {
-		while(true){
-			Partie partie=new Partie();
-			partie.lancer();
-		}
+		Partie partie=new Partie();
+		partie.lancer();
+
 	}
 
 }

@@ -7,23 +7,23 @@ import Composants.Utils;
 import Partie.ElementsPartie;
 
 /**
- * 
- * Cette classe permet de représenter un joueur ordinateur de type T3.
- * 
- * @author Jean-François Condotta - 2021
+ *
+ * Cette classe permet de reprÃ©senter un joueur ordinateur de type T3.
+ *
+ * @author Jean-FranÃ§ois Condotta - 2021
  *
  */
 
 public class JoueurOrdinateurT3 extends JoueurOrdinateur {
 
 	/**
-	 * Constructeur permettant de créer un joueur.
-	 * 
-	 * @param numJoueur Le numéro du joueur.
+	 * Constructeur permettant de crÃ©er un joueur.
+	 *
+	 * @param numJoueur Le numÃ©ro du joueur.
 	 * @param nomJoueur Le nom du joueur.
-	 * @param numeroImagePersonnage Le numéro de l'image représentant le joueur.
-	 * @param posLignePlateau La ligne du plateau sur laquelle est positionnée le joueur.
-	 * @param posColonnePlateau La colonne du plateau sur laquelle est positionnée le joueur.
+	 * @param numeroImagePersonnage Le numÃ©ro de l'image reprÃ©sentant le joueur.
+	 * @param posLignePlateau La ligne du plateau sur laquelle est positionnÃ©e le joueur.
+	 * @param posColonnePlateau La colonne du plateau sur laquelle est positionnÃ©e le joueur.
 
 	 */
 	public JoueurOrdinateurT3(int numJoueur,String nomJoueur, int numeroImagePersonnage,int posLignePlateau,int posColonnePlateau) {
@@ -45,22 +45,4 @@ public class JoueurOrdinateurT3 extends JoueurOrdinateur {
 		return nouveauJoueur;
 	}
 
-	private int[] RechercheObjet(){
-		Objet objet = this.getObjetsJoueur()[0];
-		int [] res = new int[2];
-		if(objet.surPlateau()) {
-			int x = objet.getPosColonnePlateau();
-			int y = objet.getPosLignePlateau();
-			res[0]=x;
-			res[1]=y;
-			return res;
-		}
-		return res;
-
-	}
-
-	public void VaChercher(int [] coordonnée) {
-		int [][] chemin = Plateau.calculeChemin(this.getPosLigne(), this.getPosColonne(), coordonnée[1], coordonnée[0]);
-		this.setPosition(chemin[0][0],chemin[0][1]);
-	}
 }

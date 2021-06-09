@@ -119,35 +119,24 @@ public class Plateau {
 	 * @param posColCase2 Un entier quelconque.
 	 * @return true si les positions passées en paramètre sont les positions de deux cases différentes et adjacentes de la grille de jeu et qu'il est possible de passer d'une cas à l'autre compte tenu des deux pièces posées sur les deux cases du plateau, false sinon.
 	 */
-	public boolean passageEntreCases(int posLigCase1,int posColCase1,int posLigCase2,int posColCase2){
-		Piece piece1 = plateau[posLigCase1][posColCase1];
-		Piece piece2 = plateau[posLigCase2][posColCase2];
-		String position="";
-		int testLig = posLigCase1-posLigCase2;
-		int testCol = posColCase1-posColCase2;
-		if(casesAdjacentes(posLigCase1,posColCase1,posLigCase2,posColCase2)) return false;
-		if(testLig==0){
-			if (testCol==-1){
-				position="PieceDroite";
-			}else if(testCol==1){
-				position="PieceGauche";
+	private boolean passageEntreCases(int posLigCase1,int posColCase1,int posLigCase2,int posColCase2){
+
+		boolean resultat = false;
+		if (casesAdjacentes(posLigCase1, posColCase1, posLigCase2, posColCase2)) {
+			if(posLigCase1<posLigCase2 && plateau[posLigCase1][posColCase1].getPointEntree(2) && plateau[posLigCase2][posColCase2].getPointEntree(0)) { //position relatif Bas
+				resultat = true;
 			}
-		}else if(testCol==0){
-			if(testLig==-1){
-				position="PieceBas";
-			}else if(testLig==1){
-				position="PieceHaute";
+			else if(posColCase1>posColCase2 && plateau[posLigCase1][posColCase1].getPointEntree(3) && plateau[posLigCase2][posColCase2].getPointEntree(1)) { //position relatif Haut
+				resultat = true;
+			}
+			else if (posLigCase1>posLigCase2 && plateau[posLigCase1][posColCase1].getPointEntree(0) && plateau[posLigCase2][posColCase2].getPointEntree(2)) {//position relatif Droite
+				resultat = true;
+			}
+			else if (posColCase1<posColCase2 && plateau[posLigCase1][posColCase1].getPointEntree(1) && plateau[posLigCase2][posColCase2].getPointEntree(3)) { //position relatif Gauche
+				resultat = true;
 			}
 		}
-		if (position=="PieceBas"){
-			return piece2.getPointEntree(0) && piece1.getPointEntree(2);
-		}else if(position=="PieceHaute"){
-			return piece2.getPointEntree(2) && piece1.getPointEntree(0);
-		}else if(position=="PieceDroite"){
-			return piece2.getPointEntree(3) && piece1.getPointEntree(1);
-		}else if(position=="PieceGauche"){
-			return piece2.getPointEntree(1) && piece1.getPointEntree(3);
-		}else{return false;}
+		return resultat;
 	}
 	/**
 	 * Méthode supplémentaire fait par T.S le 21/05.

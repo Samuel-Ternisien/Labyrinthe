@@ -194,13 +194,13 @@ public class ElementsPartie {
 		return pieceTemp;
 	}
 	/**
-	 * A Faire (Quand Qui Statut)
+	 * (08/06 T.S Fini)
 	 * 
 	 * Méthode modifiant les différents éléments de la partie suite à l'insertion de la pièce libre dans le plateau.
 	 * 
 	 * @param choixEntree L'entrée choisie pour réaliser l'insertion (un nombre entre 0 et 27).
 	 */
-	/**public void insertionPieceLibre(int choixEntree){
+	public void insertionPieceLibre(int choixEntree){
 		List<Integer> haut=new ArrayList<Integer>(7);
 		List<Integer> droite=new ArrayList<Integer>(7);
 		List<Integer> bas=new ArrayList<Integer>(7);
@@ -268,9 +268,7 @@ public class ElementsPartie {
 				}
 			}
 		}
-		// A Compléter
 	}
-**/
 
 
 	/**

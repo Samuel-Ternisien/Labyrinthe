@@ -151,6 +151,7 @@ public class Plateau {
 	}
 	/**
 	 * Méthode supplémentaire fait par T.S le 21/05.
+	 * {Finalement non utilisé}
 	 * Permet de retourner la piece de gauche/droite/haut/bas pour une piece donné
 	 * Si aucune piece adjacente , renvoie null.
 	 * @param posLig,posCol Position de la pièce à être testé.
@@ -211,7 +212,7 @@ public class Plateau {
 
 	/**
 	 * 
-	 * A Faire (asap T.S en cours)
+	 * (T.S 08/06 Fini)
 	 * 
 	 * Méthode permettant de retourner un éventuel chemin entre deux cases du plateau compte tenu des pièces posées sur le plateau.
 	 * Dans le cas où il n'y a pas de chemin entre les deux cases, la valeur null est retournée.
